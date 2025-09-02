@@ -42,19 +42,20 @@
 // // Logs: 8
 
 
-function startCounter(callback) {
-  let count = 0;
-  let id = setInterval(() => {
-    count += 1;
-    if (callback(count)) {
-      clearInterval(id);
-    }
-  }, 1000);
-}
+// function startCounter(callback) {
+//   let count = 0;
+//   let id = setInterval(() => {
+//     count += 1;
+//     if (callback(count)) {
+//       clearInterval(id);
+//     }
+//   }, 1000);
+// }
 
-// Example usage:
-startCounter((count) => {
-  console.log(count);
-  return count === 5;
-});
-// Logs 1, 2, 3, 4, 5, then stops
+// // Example usage:
+// startCounter((count) => {
+//   console.log(count);
+//   return count === 5;
+// });
+// // Logs 1, 2, 3, 4, 5, then stops
+

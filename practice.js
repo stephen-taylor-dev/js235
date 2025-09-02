@@ -60,24 +60,37 @@
 //   setTimeout(callback, time * 1000);
 // }
 
-let counterId;
+// let counterId;
 
-function startCounting() {
-  console.log('Starting');
-  let n = 0;
+// function startCounting() {
+//   console.log('Starting');
+//   let n = 0;
   
-  counterId = setInterval(() => {
-      console.log('Hello!');
-      n += 2;
-      if (n >= 10) {
-        stopCounting(counterId);
-        console.log('Goodbye!');
-      }
-    }, 2000);
-}
+//   counterId = setInterval(() => {
+//       console.log('Hello!');
+//       n += 2;
+//       if (n >= 10) {
+//         stopCounting(counterId);
+//         console.log('Goodbye!');
+//       }
+//     }, 2000);
+// }
 
-function stopCounting(id) {
-  clearInterval(id);
-}
+// function stopCounting(id) {
+//   clearInterval(id);
+// }
 
-startCounting();
+// startCounting();
+
+let myPromise = new Promise((chicken, pig, cow) => {
+  setTimeout(() => {
+    chicken("hello");
+    console.log(myPromise);
+    pig('pog')
+    console.log(myPromise);
+    cow('bog')
+    console.log(myPromise);
+  }, 1000)
+});
+
+console.log(myPromise); // Promise {<pending>}
