@@ -1,6 +1,6 @@
 function flakyService() {
   return new Promise((resolve, reject) => {
-    if (Math.random() > 0.5) {
+    if (Math.random() > -1) {
       resolve("Operation successful");
     } else {
       reject("Operation failed");
@@ -20,6 +20,20 @@ function loadData() {
   });
 }
 
+
+flakyService().then(() => {
+  console.log('test 1');
+})
+
+
+flakyService().then(() => {
+  console.log('test 2');
+})
+
+
+flakyService().then(() => {
+  console.log('test 3');
+})
 
 // let promise1 = flakyService();
 // let promise2 = flakyService();
@@ -67,27 +81,29 @@ function loadData() {
 //     console.log(error);
 //   })
 
-function timeoutPromise(promise, ms) {
-  let timeOut = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve('timeout complete');
-    }, ms);
-  });
+// function timeoutPromise(promise, ms) {
+//   let timeOut = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve('timeout complete');
+//     }, ms);
+//   });
 
-  return Promise.race([promise, timeOut])
-    .then(success => {
-      if (success === 'timeout complete') {
-        return new Error('Operation timed out')
-      }
-    })
-    .catch(error => {
-      // console.log(error);
-      return "All operations were unsuccesful"
-    })
-}
+//   return Promise.race([promise, timeOut])
+//     .then(success => {
+//       if (success === 'timeout complete') {
+//         return new Error('Operation timed out')
+//       }
+//     })
+//     .catch(error => {
+//       // console.log(error);
+//       return "All operations were unsuccesful"
+//     })
+// }
 
 
-timeoutPromise(loadData(), 500)
-  .then(console.log)
-  .catch(console.error);
+// timeoutPromise(loadData(), 500)
+//   .then(console.log)
+//   .catch(console.error);
 // Expected output: "Operation timed out" (because it exceeds 500ms)
+
+
