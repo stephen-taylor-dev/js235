@@ -1,0 +1,66 @@
+<h1>Existing Page</h1>
+
+<div id="store"></div>
+
+<style>
+#store {
+  border: solid 1px black;
+  padding: 0 1em;
+  float: left;
+  h1 {
+    font-size: 1.2em;
+  }
+  
+  h2 {
+    font-size: 1em;
+  }
+  form {
+    button {
+      margin-bottom: 1em;
+    }
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  let store = document.getElementById('store');
+
+  const BASE_URL = 'https://ls-230-web-store-demo.herokuapp.com';
+
+  async function loadContent(url) {
+    let response = await fetch(url);
+    store.innerHTML = await response.text();
+  }
+
+  await loadContent(`${BASE_URL}/products`);
+
+  store.addEventListener('click', async event => {
+    let target = event.target;
+    if (target.tagName !== "A") {
+      return;
+    }
+
+    event.preventDefault();
+    let url = BASE_URL + target.getAttribute('href');
+    await loadContent(url);
+  });
+
+  document.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    let form = event.target;
+    let data = new FormData(form);
+
+    let response = await fetch(`${BASE_URL}/${form.getAttribute('action')}`, {
+        method: form.method,
+        headers: {
+            'Authorization': 'token AUTH_TOKEN'
+        },
+        body: data,
+    });
+
+    store.innerHTML = await response.text();
+  });
+});
+</script>
