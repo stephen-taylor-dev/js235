@@ -5,9 +5,13 @@ class App {
   constructor() {
     this.slides = document.getElementById('slides');
     this.commentsDiv = document.querySelector('#comments ul');
+    this.nextButton = document.querySelector('.next');
+    this.prevButton = document.querySelector('.prev');
     
     this.photos = null;
     this.comments = null;
+
+    this.nextButton.addEventListener(h)
   }
 
   async main() {
