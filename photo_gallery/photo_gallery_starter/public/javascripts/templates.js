@@ -1,7 +1,7 @@
 const templates = {
   photo({ id, src, caption }) {
     return (
-      `<figure data-id="${id}">
+      `<figure class="hidden" data-id="${id}">
          <img src="${src}" />
          <figcaption>${caption}</figcaption>
        </figure>`
@@ -18,10 +18,10 @@ const templates = {
     <p><time>Taken on ${created_at}</time></p>
     <div class="actions">
       <a href="/photos/like" data-id="${id}" data-property="likes" class="button like">
-        ♡ ${likes ? likes : 0} Likes
+        ♡ <span>${likes ? likes : 0}</span> Likes
       </a>
       <a href="/photos/favorite" data-id="${id}" data-property="favorites" class="button favorite">
-        ☆ ${favorites ? favorites : 0} Favorites
+        ☆ <span>${favorites ? favorites : 0}</span> Favorites
       </a>
     </div>
     `);
