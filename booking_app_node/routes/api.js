@@ -107,15 +107,11 @@ router.get('/students', function(req, res, next) {
 router.get('/schedules', function(req, res, next) {
   db.all('SELECT * FROM BOOKINGS;', function(err, rows) {
     const rand = Math.random();
-    if (rand >= 0.5 && rows.length > 7) {      
+    if (rand >= 0.5 && rows.length > 7) {
       sleep(7000);
     }
 
-    if (rows) {
-
-    }
-
-    res.json(rows);    
+    res.json(rows);
   });
 });
 
