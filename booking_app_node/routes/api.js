@@ -116,16 +116,16 @@ router.get('/schedules', function(req, res, next) {
 });
 
 
-// router.get('/schedules_available', function(req, res, next) {
-//   db.all('SELECT * FROM BOOKINGS WHERE STUDENT_EMAIL IS NULL;', function(err, rows) {
-//     const rand = Math.random();
-//     if (rand >= 0.5 && rows.length > 7) {
-//       sleep(7000);
-//     }
+router.get('/unbooked_schedules', function(req, res, next) {
+  db.all('SELECT BOOKINGS.id, BOOKINGS.date, BOOKINGS.time, STAFFS.name FROM BOOKINGS INNER JOIN STAFFS ON BOOKINGS.staff_id = STAFFS.id WHERE STUDENT_EMAIL IS NULL;', function(err, rows) {
+    const rand = Math.random();
+    if (rand >= 0.5 && rows.length > 7) {
+      sleep(7000);
+    }
 
-//     res.json(rows);
-//   });
-// });
+    res.json(rows);
+  });
+});
 
 /**
  * @api {get} /schedules/:staff_id Retrieves all available schedules for a given staff_id
@@ -269,7 +269,7 @@ router.post('/bookings', function(req, res, next) {
     } else {
       res.status(404).send('Schedule is either booked or does not exist.');
     }
-  });;
+  });
 });
 
 /**
